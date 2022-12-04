@@ -25,7 +25,7 @@ function App() {
       .post("http://localhost:3000/userapi/User", { user: name })
       .then(({ data }) => {
         localStorage.setItem("token",data.token)
-        setUser(jwt(data.token))});
+        setUser(jwt(data.token))}).catch((err)=>alert("Unable to Login/Signup"));;
 
   }
 

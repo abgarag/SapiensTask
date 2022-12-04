@@ -26,7 +26,7 @@ export default function Header() {
         .then(({ data }) =>{ 
            
             localStorage.setItem("token",data.token)
-       });
+       }).catch((err)=>alert("Unable to Update Color"));
        setUser({username:user.username,color})
 
        
