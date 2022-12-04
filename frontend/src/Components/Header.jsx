@@ -6,6 +6,8 @@ import { ThemeContext } from '../Contexts/ThemeContext';
 
 export default function Header() {
     const { user,setUser } = useContext(ThemeContext);
+   
+   //added this function as an alternate to color picker due to time constraint
     function getRandomColor() {
         var letters = '0123456789ABCDEF';
         var color = '#';
@@ -19,7 +21,7 @@ export default function Header() {
     let color=getRandomColor()
       
         axios
-        .put("http://localhost:3000/userapi/User", { user:jwt(localStorage.getItem("token")).username,color},
+        .put("http://localhost:3000/userapi/User", { user:user.username,color},
         {headers:{
           'Authorization': `Bearer ${localStorage.getItem("token")}` 
         }})
@@ -27,6 +29,7 @@ export default function Header() {
            
             localStorage.setItem("token",data.token)
        }).catch((err)=>alert("Unable to Update Color"));
+       //Context updates even if save through api fails to keep the user experience with new color
        setUser({username:user.username,color})
 
        

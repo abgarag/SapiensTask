@@ -13,11 +13,14 @@ function App() {
 
   const value = { user, setUser };
   useEffect(()=>{
+    let token=localStorage.getItem("token")
+    if(token){
     axios
-    .post("http://localhost:3000/userapi/User", { user: jwt(localStorage.getItem("token")).username  })
+    .post("http://localhost:3000/userapi/User", { user: jwt(token).username  })
     .then(({ data }) => {
       localStorage.setItem("token",data.token)
       setUser(jwt(data.token))});
+    }
 
   },[])
   const Signup=()=>{
