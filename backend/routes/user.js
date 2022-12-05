@@ -43,11 +43,11 @@ router.put("/User",verifyToken,async(req,res)=>{
    
     let dbusers=JSON.parse(db)
     let ExistingUser=dbusers.findIndex(({username})=>username===user)
-    console.log(ExistingUser)
+    
     if(ExistingUser>-1){
         let userObj={...dbusers[ExistingUser],color};
         dbusers.splice(ExistingUser,1,userObj)
-        console.log(dbusers[ExistingUser])
+       
 
        
        fs.writeFile(dbPath,JSON.stringify(dbusers),async(err)=>{
