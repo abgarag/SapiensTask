@@ -11,14 +11,7 @@ export default function Header() {
     const [modal,showModal]=useState(true)
    
    //added this function as an alternate to color picker due to time constraint
-    function getRandomColor() {
-        var letters = '0123456789ABCDEF';
-        var color = '#';
-        for (var i = 0; i < 6; i++) {
-          color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
-      }
+   
     
    const ChangeColor=(color)=>{
 
@@ -43,9 +36,14 @@ export default function Header() {
     <header className='Header' style={{backgroundColor:user.color}}>
     <h2>SAPIENS</h2>
     <button onClick={()=>showModal(prevState=>!prevState)} style={{marginRight:5}}>Change Color</button>
+   {/*
+   Event bubbling added intentionally to hide modal on user selection
+   */}
     {modal&&
+    <div className="overlay" onClick={()=>showModal(false)}>
     <div className='colorModal'>
     <FormControl>
+        Choose Color
      <RadioGroup
         row
         aria-labelledby="demo-form-control-label-placement"
@@ -70,6 +68,7 @@ export default function Header() {
 
       
 
+    </div>  
     </div>
     }
     
