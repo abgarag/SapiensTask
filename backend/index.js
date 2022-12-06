@@ -12,9 +12,7 @@ app.use(express.json());
 app.use("/userapi",users)
 
 
-app.get("*",(req,res)=>{
-    res.sendFile("index.html",{root:path.join(__dirname,"../frontend","dist")})
-})
+
 app.listen(port, () => {
   console.log(`app listening on port ${port}`)
 })
